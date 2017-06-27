@@ -98,6 +98,7 @@ public class App {
         listenView.addSpeechStateChangeListener(visualizerView);
         listenView.addSpeechStateChangeListener(playbackControlsView);
         listenView.addSpeechStateChangeListener(cardView);
+        // here
         authSetup.addAccessTokenListener(bearerTokenView);
         authSetup.addAccessTokenListener(controller);
     }

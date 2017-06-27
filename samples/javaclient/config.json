@@ -1,19 +1,21 @@
 {
-    "productId":"",
-    "dsn":"",
-    "provisioningMethod":"",
-    "wakeWordAgentEnabled":false,
+    "productId":"alexaunity",
+    "dsn":"123456",
+    "provisioningMethod":"companionService",
+    "wakeWordAgentEnabled":true,
     "locale":"en-US",
+    "avsHost":"https://avs-alexa-na.amazon.com",
     "companionApp":{
         "localPort":8443,
-        "sslKeyStore":"",
-        "sslKeyStorePassphrase":"",
-        "lwaUrl":"https://api.amazon.com"
+        "lwaUrl":"https://api.amazon.com",
+        "sslKeyStore":"./certs/server/jetty.pkcs12",
+        "sslKeyStorePassphrase":""
     },
     "companionService":{
         "serviceUrl":"https://localhost:3000",
-        "sslClientKeyStore":"",
+        "sslClientKeyStore":"./certs/client/client.pkcs12",
         "sslClientKeyStorePassphrase":"",
-        "sslCaCert":""
+        "sslCaCert":"./certs/ca/ca.crt",
+        "sessionId":"1480be28-f80c-4a17-8b4b-d044cf89bd77"
     }
 }

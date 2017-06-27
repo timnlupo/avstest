@@ -29,6 +29,7 @@ import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.Scrollable;
@@ -115,6 +116,8 @@ public class CardPanel extends JPanel implements Scrollable {
         }
 
         JTextArea card = new JTextArea(rawPayload);
+        //JOptionPane.showMessageDialog(null, rawPayload);
+        //log.error(rawPayload);
         card.setLineWrap(true);
         card.setWrapStyleWord(true);
         card.setEditable(false);

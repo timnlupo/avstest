@@ -14,6 +14,7 @@ package com.amazon.alexa.avs.ui;
 
 import com.amazon.alexa.avs.message.response.templateruntime.CardHandler;
 import com.amazon.alexa.avs.message.response.templateruntime.RenderTemplate;
+import com.amazon.alexa.avs.unity.UnityInterface;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -23,11 +24,17 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class CardView extends JPanel implements CardHandler, SpeechStateChangeListener {
 
     private static final int CARD_WIDTH = 400;
     private static final int CARD_HEIGHT = 300;
     private static final String CARD_PANEL_NAME = "cardpanel";
+    private static final Logger log = LoggerFactory.getLogger(CardView.class);
+
+    private static final UnityInterface unity = new UnityInterface();
 
     private CardPanel cardPanel;
 
@@ -43,15 +50,18 @@ public class CardView extends JPanel implements CardHandler, SpeechStateChangeLi
 
     @Override
     public void onProcessing() {
+      unity.updateOnProcessing();
     }
 
     @Override
     public void onListening() {
-        SwingUtilities.invokeLater(() -> cardPanel.clearCard());
+      unity.updateOnListening();
+      SwingUtilities.invokeLater(() -> cardPanel.clearCard());
     }
 
     @Override
     public void onProcessingFinished() {
+      unity.updateOnProcessingFinished();
     }
 
     @Override

@@ -1,13 +1,13 @@
-/** 
+/**
  * Copyright 2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
- * Licensed under the Amazon Software License (the "License"). You may not use this file 
+ * Licensed under the Amazon Software License (the "License"). You may not use this file
  * except in compliance with the License. A copy of the License is located at
  *
  *   http://aws.amazon.com/asl/
  *
- * or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, 
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied. See the License for the 
+ * or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
 package com.amazon.alexa.avs.http;
@@ -15,6 +15,7 @@ package com.amazon.alexa.avs.http;
 import com.amazon.alexa.avs.config.ObjectMapperFactory;
 import com.amazon.alexa.avs.exception.AVSJsonProcessingException;
 import com.amazon.alexa.avs.message.Message;
+import com.amazon.alexa.avs.unity.UnityInterface;
 
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectReader;
@@ -25,6 +26,7 @@ import java.io.IOException;
 
 public class MessageParser {
     private static final Logger log = LoggerFactory.getLogger(MessageParser.class);
+    private static final UnityInterface unity = new UnityInterface();
 
     /**
      * Parses a single valid Message in the given byte array
@@ -41,10 +43,15 @@ public class MessageParser {
         try {
             ObjectReader reader = ObjectMapperFactory.getObjectReader();
             Object logBody = reader.withType(Object.class).readValue(bytes);
-            log.info("Response metadata: \n{}", ObjectMapperFactory
+            unity.updateUnityAlexa(ObjectMapperFactory
                     .getObjectWriter()
                     .withDefaultPrettyPrinter()
                     .writeValueAsString(logBody));
+            log.warn("Response metadata: \n{}", ObjectMapperFactory
+                    .getObjectWriter()
+                    .withDefaultPrettyPrinter()
+                    .writeValueAsString(logBody));
+
             return reader.withType(clazz).readValue(bytes);
         } catch (JsonProcessingException e) {
             String unparseable = new String(bytes, "UTF-8");
