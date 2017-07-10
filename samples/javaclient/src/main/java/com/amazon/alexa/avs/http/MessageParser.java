@@ -26,7 +26,8 @@ import java.io.IOException;
 
 public class MessageParser {
     private static final Logger log = LoggerFactory.getLogger(MessageParser.class);
-    private static final UnityInterface unity = new UnityInterface();
+
+    private static final UnityInterface unity = UnityInterface.getInstance();
 
     /**
      * Parses a single valid Message in the given byte array

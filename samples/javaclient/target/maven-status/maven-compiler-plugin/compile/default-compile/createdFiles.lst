@@ -105,6 +105,7 @@ com/amazon/alexa/avs/message/response/templateruntime/Title.class
 com/amazon/alexa/avs/message/request/ComponentStateFactory.class
 com/amazon/alexa/avs/http/ParsingFailedHandler.class
 com/amazon/alexa/avs/AVSAPIConstants$SpeechRecognizer$Directives$StopCapture.class
+com/amazon/alexa/avs/unity/UnityInterface$1.class
 com/amazon/alexa/avs/AudioPlayerStateMachine$PlaybackFinished.class
 com/amazon/alexa/avs/AudioPlayerStateMachine.class
 com/amazon/alexa/avs/http/AVSClient.class
@@ -120,6 +121,7 @@ com/amazon/alexa/avs/AudioPlayerProgressReporter.class
 com/amazon/alexa/avs/auth/companionapp/CompanionAppAuthManager$1.class
 com/amazon/alexa/avs/message/request/Event.class
 com/amazon/alexa/avs/message/request/context/ComponentState.class
+com/amazon/alexa/avs/unity/UnityInterface$2.class
 com/amazon/alexa/avs/AVSAPIConstants$SpeechSynthesizer$Events$SpeechFinished.class
 com/amazon/alexa/avs/auth/companionservice/CompanionServiceClient$RemoteServiceException.class
 com/amazon/alexa/avs/AVSAPIConstants$Alerts$Events$AlertStopped.class

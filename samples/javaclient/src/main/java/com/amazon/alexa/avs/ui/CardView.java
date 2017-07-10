@@ -34,7 +34,7 @@ public class CardView extends JPanel implements CardHandler, SpeechStateChangeLi
     private static final String CARD_PANEL_NAME = "cardpanel";
     private static final Logger log = LoggerFactory.getLogger(CardView.class);
 
-    private static final UnityInterface unity = new UnityInterface();
+    private static final UnityInterface unity = UnityInterface.getInstance();
 
     private CardPanel cardPanel;
 
