@@ -2,6 +2,8 @@ alexa-unity {
   deviceID {
     isListening: boolean
     isProcessing: boolean
-    lastData: json
+    data {
+      json[]
+    }
   }
 }

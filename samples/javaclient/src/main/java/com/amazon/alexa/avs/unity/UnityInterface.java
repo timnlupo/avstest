@@ -54,41 +54,54 @@ public final class UnityInterface {
     }
 
     public void updateUnityAlexa(String input) {
-      DatabaseReference dataRef = this.ref.child("lastData");
+      DatabaseReference dataRef = this.ref.child("data");
       Map<String, Object> jsonMap = new Gson().fromJson(input, new TypeToken<HashMap<String, Object>>() {}.getType());
-      postFirebase(jsonMap, dataRef);
+      postFirebase(jsonMap, dataRef, true);
     }
 
     public void updateOnProcessing() {
       DatabaseReference dataRef1 = this.ref.child("isListening");
       DatabaseReference dataRef2 = this.ref.child("isProcessing");
-      postFirebase(false, dataRef1);
-      postFirebase(true, dataRef2);
+      postFirebase(false, dataRef1, false);
+      postFirebase(true, dataRef2, false);
     }
 
     public void updateOnListening() {
       DatabaseReference dataRef = this.ref.child("isListening");
-      postFirebase(true, dataRef);
+      postFirebase(true, dataRef, false);
     }
 
     public void updateOnProcessingFinished() {
       DatabaseReference dataRef = this.ref.child("isProcessing");
-      postFirebase(false, dataRef);
+      postFirebase(false, dataRef, false);
     }
 
-    private void postFirebase(Object value, DatabaseReference dataRef) {
+    private void postFirebase(Object value, DatabaseReference dataRef, boolean isPush) {
       if (this.firebaseReady) {
         try {
-          dataRef.setValue(value, new DatabaseReference.CompletionListener() {
-              @Override
-              public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                  if (databaseError != null) {
-                      log.error("FB: Data could not be saved - " + databaseError.getMessage());
-                  } else {
-                      //log.error("FB: Data saved successfully");
-                  }
-              }
-          });
+          if (isPush) {
+            dataRef.push().setValue(value, new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                    if (databaseError != null) {
+                        log.error("FB: Data could not be saved - " + databaseError.getMessage());
+                    } else {
+                        //log.error("FB: Data saved successfully");
+                    }
+                }
+            });
+          } else {
+            dataRef.setValue(value, new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                    if (databaseError != null) {
+                        log.error("FB: Data could not be saved - " + databaseError.getMessage());
+                    } else {
+                        //log.error("FB: Data saved successfully");
+                    }
+                }
+            });
+          }
         } catch(Exception e) {
           log.error("FB: Exception found - " + e);
         }

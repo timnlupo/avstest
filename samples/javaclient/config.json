@@ -16,6 +16,6 @@
         "sslClientKeyStore":"./certs/client/client.pkcs12",
         "sslClientKeyStorePassphrase":"",
         "sslCaCert":"./certs/ca/ca.crt",
-        "sessionId":"1480be28-f80c-4a17-8b4b-d044cf89bd77"
+        "sessionId":"7832b0ea-8e0b-4631-8e2d-0e6f915d5480"
     }
 }

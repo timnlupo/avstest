@@ -20,6 +20,12 @@
   </properties>
   <dependencies>
     <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna</artifactId>
+      <version>4.1.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
       <version>1.9</version>
