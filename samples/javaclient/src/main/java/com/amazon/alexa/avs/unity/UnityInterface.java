@@ -59,6 +59,11 @@ public final class UnityInterface {
       postFirebase(jsonMap, dataRef, true);
     }
 
+    public void updateOnListening() {
+      DatabaseReference dataRef = this.ref.child("isListening");
+      postFirebase(true, dataRef, false);
+    }
+
     public void updateOnProcessing() {
       DatabaseReference dataRef1 = this.ref.child("isListening");
       DatabaseReference dataRef2 = this.ref.child("isProcessing");
@@ -66,13 +71,20 @@ public final class UnityInterface {
       postFirebase(true, dataRef2, false);
     }
 
-    public void updateOnListening() {
-      DatabaseReference dataRef = this.ref.child("isListening");
-      postFirebase(true, dataRef, false);
-    }
-
     public void updateOnProcessingFinished() {
       DatabaseReference dataRef = this.ref.child("isProcessing");
+      postFirebase(false, dataRef, false);
+    }
+
+    public void updateOnTalking() {
+      DatabaseReference dataRef1 = this.ref.child("isProcessing");
+      DatabaseReference dataRef2 = this.ref.child("isTalking");
+      postFirebase(false, dataRef1, false);
+      postFirebase(true, dataRef2, false);
+    }
+
+    public void updateOnTalkingFinished() {
+      DatabaseReference dataRef = this.ref.child("isTalking");
       postFirebase(false, dataRef, false);
     }
 
@@ -84,9 +96,9 @@ public final class UnityInterface {
                 @Override
                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                     if (databaseError != null) {
-                        log.error("FB: Data could not be saved - " + databaseError.getMessage());
+                        log.debug("FB: Data could not be saved - " + databaseError.getMessage());
                     } else {
-                        //log.error("FB: Data saved successfully");
+                        log.debug("FB: Data saved successfully");
                     }
                 }
             });
@@ -95,9 +107,9 @@ public final class UnityInterface {
                 @Override
                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                     if (databaseError != null) {
-                        log.error("FB: Data could not be saved - " + databaseError.getMessage());
+                        log.debug("FB: Data could not be saved - " + databaseError.getMessage());
                     } else {
-                        //log.error("FB: Data saved successfully");
+                        log.debug("FB: Data saved successfully");
                     }
                 }
             });
